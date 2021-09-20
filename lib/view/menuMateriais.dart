@@ -29,7 +29,7 @@ class menuMateriais extends StatelessWidget {
             child: Container(
               child: Column(
                 children: [
-                  btnGenericoMenu("Pesquisar", '/pesquisaMateriais'),
+                  btnGenericoMenu("Pesquisar",'/consultaMateriais'),
                 ],
               ),
             ),

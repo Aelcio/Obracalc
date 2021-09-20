@@ -22,10 +22,10 @@ class menuPrincipal extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    btnGenericoMenu("Clientes",'/cadClientes'),
-                    btnGenericoMenu('Orçamento', '/orcamento'),
-                    btnGenericoMenu('Serviços','/cadServicos'),
-                    btnGenericoMenu('Unidades','/menuUndMedidas'),
+                    btnGenericoMenu("Clientes",'/menuClientes'),
+                    btnGenericoMenu('Orçamento', '/menuOrcamento'),
+                    btnGenericoMenu('Serviços','/menuServicos'),
+                    btnGenericoMenu('Unidade','/menuUndMedidas'),
                     ],
                 ),
               ),
@@ -42,7 +42,7 @@ class menuPrincipal extends StatelessWidget {
                   children: [
                     btnGenericoMenu('Materiais','/menuMateriais'),
                     btnGenericoMenu("Traços", '/menuTraco'),
-                    btnGenericoMenu("Usuários", '/cadUsuarios'),
+                    btnGenericoMenu("Usuários", '/menuUsuarios'),
                   ],
                 ),
               ),

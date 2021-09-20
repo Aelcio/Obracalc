@@ -10,7 +10,7 @@ class cadMateriais extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Materiais"),
+        title: Text("Cadastro de Materiais"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

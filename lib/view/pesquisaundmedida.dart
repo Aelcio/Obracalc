@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:obracalc/generic/campos.dart';
 
-class pesquisaMateriais extends StatelessWidget {
+class pesquisaUndMedida extends StatelessWidget {
   final TextEditingController _descricao = TextEditingController();
   final TextEditingController _unidadeMedida = TextEditingController();
   final TextEditingController _valorUnitario = TextEditingController();
@@ -10,7 +10,7 @@ class pesquisaMateriais extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Materiais"),
+        title: Text("Consulta Unidade de Medida"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

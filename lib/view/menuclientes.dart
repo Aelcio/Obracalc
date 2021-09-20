@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:obracalc/generic/botaomenu.dart';
 import 'package:obracalc/view/cardmateriais.dart';
 
-class menuUndMedida extends StatelessWidget {
+class menuClientes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFe0e0e0),
       appBar: AppBar(
-        title: Text("Unidade de Medida"),
+        title: Text("Clientes"),
       ),
       body: Row(
         children: [
@@ -18,7 +18,7 @@ class menuUndMedida extends StatelessWidget {
             child: Container(
               child: Column(
                 children: [
-                  btnGenericoMenu("Cadastrar", '/cadUndMedida'),
+                  btnGenericoMenu("Cadastrar", '/cadClientes'),
                 ],
               ),
             ),
@@ -29,7 +29,7 @@ class menuUndMedida extends StatelessWidget {
             child: Container(
               child: Column(
                 children: [
-                  btnGenericoMenu("Pesquisar", '/consultaUndMedida'),
+                  btnGenericoMenu('Pesquisar', '/consultaClientes'),
                 ],
               ),
             ),

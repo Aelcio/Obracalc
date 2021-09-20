@@ -12,7 +12,7 @@ final TextEditingController _cidade = TextEditingController();
 final TextEditingController _estado = TextEditingController();
 final TextEditingController _cep = TextEditingController();
 
-class cadClientes extends StatelessWidget {
+class alteraClientes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class cadClientes extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
                 child: Text(
-                  "Salvar",
+                  "Alterar",
                 ),
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(

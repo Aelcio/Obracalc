@@ -10,7 +10,7 @@ class pesquisaMateriais extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Materiais"),
+        title: Text("Consulta Materiais"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

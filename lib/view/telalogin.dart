@@ -24,7 +24,7 @@ class telaLogin extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
                 child: Text(
-                  "Entrar",
+                  "ENTRAR",
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, '/menuPrincipal');
