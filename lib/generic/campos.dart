@@ -11,22 +11,26 @@ class Editor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(6.0),
       child: TextField(
+
         //textAlign: TextAlign.center,
         controller: _controlador,
         decoration: InputDecoration(
+          //enabled: false,
           //enabledBorder: InputBorder.none,
+
           fillColor: Colors.white,
           filled: true,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10.0),
+
           ),
-          prefixIcon: Icon(_icone, color: Colors.brown),
+          prefixIcon: Icon(_icone, color: Color(0xFF4bacb8)),
           labelText: (_rotulo),
           hintText: (_dica),
           //icon: Icon(_icone),
-          //contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
+          contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 10.0),
         ),
       ),
     );

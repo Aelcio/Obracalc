@@ -11,8 +11,8 @@ class cadUsuarios extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFe0e0e0),
-      appBar: AppBar(title: Text("Cadastro Usuário")),
-      //bottomNavigationBar: BottomNavigationBar(currentIndex: 0, items: [],),
+      appBar: AppBar(title: Text("Cadastro Usuário",)),
+      //bottomNavigationBar: BottomNavigationBar(currentI,ndex: 0, items: [],),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +66,7 @@ class Editor extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          prefixIcon: Icon(_icone, color: Colors.brown),
+          prefixIcon: Icon(_icone, color: Color(0xFF4bacb8)),  
           labelText: (_rotulo),
           hintText: (_dica),
           //icon: Icon(_icone),
