@@ -6,36 +6,27 @@ class menuServicos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFe0e0e0),
-      appBar: AppBar(
-        title: Text("Materiais"),
-      ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Cadastrar", '/cadServicos'),
-                ],
-              ),
+        backgroundColor: Color(0xFFe0e0e0),
+        appBar: AppBar(
+          title: Text("Materiais"),
+        ),
+        body: Container(
+          width: double.maxFinite,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child:
+                      btnGenericoMenu("Cadastrar", '/cadServicos', Icons.add),
+                ),
+                Expanded(
+                  child: btnGenericoMenu(
+                      "Pesquisar", '/consultaServicos', Icons.search),
+                ),
+              ],
             ),
-          )),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Pesquisar",'/consultaServicos'),
-                ],
-              ),
-            ),
-          ))
-        ],
-      ),
-    );
+          ),
+        ));
   }
 }

@@ -10,32 +10,22 @@ class menuClientes extends StatelessWidget {
       appBar: AppBar(
         title: Text("Clientes"),
       ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Cadastrar", '/cadClientes'),
-                ],
-              ),
+        body: Container(
+          width: double.maxFinite,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              children: [
+                Expanded(child:
+                btnGenericoMenu("Cadastrar", '/cadClientes', Icons.add),
+                ),
+                Expanded(child:
+                btnGenericoMenu('Pesquisar', '/consultaClientes', Icons.search),
+                ),
+              ],
             ),
-          )),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu('Pesquisar', '/consultaClientes'),
-                ],
-              ),
-            ),
-          ))
-        ],
-      ),
-    );
+          ),
+        ),
+     );
   }
 }

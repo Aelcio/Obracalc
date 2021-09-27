@@ -10,31 +10,22 @@ class menuUndMedida extends StatelessWidget {
       appBar: AppBar(
         title: Text("Unidade de Medida"),
       ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Cadastrar", '/cadUndMedida'),
-                ],
+      body: Container(
+        width: double.maxFinite,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: btnGenericoMenu("Cadastrar", '/cadUndMedida', Icons.add),
               ),
-            ),
-          )),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Pesquisar", '/consultaUndMedida'),
-                ],
+              Expanded(
+                child: btnGenericoMenu(
+                    "Pesquisar", '/consultaUndMedida', Icons.search),
               ),
-            ),
-          ))
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

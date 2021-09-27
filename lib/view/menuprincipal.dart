@@ -7,30 +7,36 @@ class menuPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFe0e0e0),
+      backgroundColor: Color(0xFFf5f5f5),
       appBar: AppBar(
         title: Text("Menu Principal"),
       ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
+      body: ListView(
+        //children: [
+         // Expanded(
+              //child: Padding(
+            //padding: const EdgeInsets.all(8.0),
+           // child: Container(
               // color: Colors.orange,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
+              //child: Padding(
+                //padding: const EdgeInsets.all(8.0),
+                //child: Column(
                   children: [
-                    btnGenericoMenu("Clientes",'/menuClientes'),
-                    btnGenericoMenu('Orçamento', '/menuOrcamento'),
-                    btnGenericoMenu('Serviços','/menuServicos'),
-                    btnGenericoMenu('Unidade','/menuUndMedidas'),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: btnGenericoMenu("Clientes",'/menuClientes', Icons.person_outline_rounded),
+                    ),
+                    btnGenericoMenu('Orçamento', '/menuOrcamento', Icons.attach_money_rounded),
+                    btnGenericoMenu('Serviços','/menuServicos', Icons.construction_rounded),
+                    btnGenericoMenu('Unidade de Medida','/menuUndMedidas', Icons.construction_rounded),
+                    btnGenericoMenu('Materiais','/menuMateriais', Icons.house_outlined),
+                    btnGenericoMenu("Traços", '/menuTraco',Icons.construction_rounded),
+                    btnGenericoMenu("Usuários", '/menuUsuarios', Icons.person),
                     ],
                 ),
-              ),
-            ),
-          )),
+              );
+           // ),
+          //)),
           Expanded(
               child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -40,15 +46,15 @@ class menuPrincipal extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    btnGenericoMenu('Materiais','/menuMateriais'),
-                    btnGenericoMenu("Traços", '/menuTraco'),
-                    btnGenericoMenu("Usuários", '/menuUsuarios'),
+                    //btnGenericoMenu('Materiais','/menuMateriais'),
+                    //btnGenericoMenu("Traços", '/menuTraco'),
+                    //btnGenericoMenu("Usuários", '/menuUsuarios'),
                   ],
                 ),
               ),
             ),
-          ))
-        ],
+         // ))
+        //],
       ),
     );
   }

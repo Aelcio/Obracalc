@@ -7,34 +7,23 @@ class menuOrcamento extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFe0e0e0),
-      appBar: AppBar(
-        title: Text("Orçamento")
-      ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Cadastrar", '/orcamento'),
-                ],
+      appBar: AppBar(title: Text("Orçamento")),
+      body: Container(
+        width: double.maxFinite,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: btnGenericoMenu("Cadastrar", '/orcamento', Icons.add),
               ),
-            ),
-          )),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Pesquisar",'/consultaOrcamento'),
-                ],
+              Expanded(
+                child: btnGenericoMenu(
+                    "Pesquisar", '/consultaOrcamento', Icons.search),
               ),
-            ),
-          ))
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:obracalc/view/cadclientes.dart';
 import 'package:obracalc/view/cadservicos.dart';
@@ -26,6 +27,8 @@ import 'package:obracalc/view/pesquisarmateriais.dart';
 import 'package:obracalc/view/pesquisaservicos.dart';
 import 'package:obracalc/view/pesquisaundmedida.dart';
 import 'package:obracalc/view/telaInicial.dart';
+import 'package:obracalc/view/telalogin.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() {
   runApp(ObraCalc());
@@ -36,17 +39,16 @@ class ObraCalc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         '/menuTraco': (context) => menuTraco(),
         '/cadClientes': (context) => cadClientes(),
         '/cadUndMedida': (context) => cadUndMedida(),
         '/cadUsuarios': (context) => cadUsuarios(),
-        '/cadClientes': (context) => cadClientes(),
         '/listaTracoArgamassa': (context) => listaTracoArgamassa(),
         '/listaTracoConcreto': (context) => listaTracoConcreto(),
         '/menuMateriais': (context) => menuMateriais(),
         '/menuPrincipal': (context) => menuPrincipal(),
-        '/menuTraco': (context) => menuTraco(),
         '/cadServicos': (context) => cadServicos(),
         '/consultaServicos': (context) => consultaServicos(),
         '/menuServicos': (context) => menuServicos(),
@@ -64,15 +66,62 @@ class ObraCalc extends StatelessWidget {
       },
       title: 'Obra Calc',
       theme: ThemeData(
-        primaryColor: Color(0xFFa1887f),
+        primaryColor: Color(0xFF4bacb8),
+        accentColor: Color(0xFFf5f5f5),
+        splashColor: Colors.yellow,
+        //primaryColor: Color(0xFFa1887f),
         //primaryColor: Color(0xFF388e3c),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: TextButton.styleFrom(backgroundColor: Color(0xFFbcaaa4)),
+          style: TextButton.styleFrom(backgroundColor: Color(0xFF4bacb8)),
             //style: TextButton.styleFrom(backgroundColor: Color(0xFF388e3c)),
 
         ),
       ),
-      home: telaInicial(),
+      home: MyHomePage(),
     );
   }
+}
+
+//==============================================================================
+class MyHomePage extends StatefulWidget {
+  //MyHomePage({Key key, this.title}) : super(key: key);
+  //final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return _introScreen();
+  }
+}
+
+Widget _introScreen() {
+  return Stack(
+    children: <Widget>[
+      SplashScreen(
+        seconds: 3,
+        gradientBackground: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Color(0xFF4bacb8),
+            Color(0xFF4bacb8)
+          ],
+        ),
+        navigateAfterSeconds: telaLogin(),
+        loaderColor: Colors.transparent,
+      ),
+      Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/logosm1.png"),
+            fit: BoxFit.none,
+          ),
+        ),
+      ),
+    ],
+  );
 }

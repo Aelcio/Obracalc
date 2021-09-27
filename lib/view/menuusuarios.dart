@@ -10,31 +10,22 @@ class menuUsuarios extends StatelessWidget {
       appBar: AppBar(
         title: Text("Usuários"),
       ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Cadastrar", '/cadUsuarios'),
-                ],
+      body: Container(
+        width: double.maxFinite,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: btnGenericoMenu("Cadastrar", '/cadUsuarios', Icons.add),
               ),
-            ),
-          )),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Pesquisar",'/consultaUsuarios'),
-                ],
+              Expanded(
+                child: btnGenericoMenu(
+                    "Pesquisar", '/consultaUsuarios', Icons.search),
               ),
-            ),
-          ))
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

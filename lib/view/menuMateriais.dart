@@ -10,32 +10,22 @@ class menuMateriais extends StatelessWidget {
       appBar: AppBar(
         title: Text("Materiais"),
       ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Cadastrar", '/cadMateriais'),
-                ],
-              ),
+        body: Container(
+          width: double.maxFinite,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              children: [
+                Expanded(child:
+                btnGenericoMenu("Cadastrar", '/cadMateriais', Icons.add),
+                ),
+                Expanded(child:
+                btnGenericoMenu("Pesquisar",'/consultaMateriais', Icons.search),
+                ),
+              ],
             ),
-          )),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: Column(
-                children: [
-                  btnGenericoMenu("Pesquisar",'/consultaMateriais'),
-                ],
-              ),
-            ),
-          ))
-        ],
-      ),
+          ),
+        ),
     );
   }
 }
