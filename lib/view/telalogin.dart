@@ -19,11 +19,33 @@ class telaLogin extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Editor(_controladorCampoLogin, "Login", "", Icons.account_circle, TextInputType.text),
-          Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open, TextInputType.number),
+          //Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open, TextInputType.text),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                //enabledBorder: InputBorder.none,
+                fillColor: Colors.white,
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+
+                ),
+                  prefixIcon: Icon(Icons.lock_open,
+                    color: Color(0xFF4bacb8),
+                  ),
+                labelText: 'Senha',
+                hintText: 'Senha',
+                contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
+              ),
+            ),
+          ),
           //botoes(),
 
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: ElevatedButton(
                 child: Text(
                   "ENTRAR",
@@ -39,7 +61,7 @@ class telaLogin extends StatelessWidget {
                     ))),
           ),
           Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: TextButton(
                   child: Text(
                     'Cadastrar-se',
@@ -70,7 +92,7 @@ class Editor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(12.0),
       child: TextField(
         //textAlign: TextAlign.center,
         controller: _controlador,
@@ -80,7 +102,7 @@ class Editor extends StatelessWidget {
           fillColor: Colors.white,
           filled: true,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(5.0),
           ),
           prefixIcon: Icon(
             _icone,
@@ -88,7 +110,6 @@ class Editor extends StatelessWidget {
           ),
           labelText: (_rotulo),
           hintText: (_dica),
-          //icon: Icon(_icone),
           contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
         ),
       ),

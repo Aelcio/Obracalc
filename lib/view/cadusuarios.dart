@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:obracalc/dao/usuario_dao.dart';
+import 'package:obracalc/database/app_database.dart';
+import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:obracalc/view/menuprincipal.dart';
 import 'package:obracalc/view/menutracos.dart';
 
@@ -6,6 +9,7 @@ class cadUsuarios extends StatelessWidget {
   final TextEditingController _controladorCampoNome = TextEditingController();
   final TextEditingController _controladorCampoLogin = TextEditingController();
   final TextEditingController _controladorCampoSenha = TextEditingController();
+  final UsuarioDao _dao = UsuarioDao();
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +24,7 @@ class cadUsuarios extends StatelessWidget {
           Editor(_controladorCampoNome, 'Nome', 'Nome Completo', Icons.person),
           Editor(_controladorCampoLogin, "Login", "", Icons.account_circle),
           Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open),
+
           //botoes(),
 
           Padding(
@@ -29,7 +34,12 @@ class cadUsuarios extends StatelessWidget {
                   "CADASTRAR",
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/menuPrincipal');
+                  final String nome = _controladorCampoNome.text;
+                  final String login = _controladorCampoSenha.text;
+                  final String senha = _controladorCampoSenha.text;
+                  final Usuario newUsuario = Usuario(0, nome, login, senha);
+                  _dao.saveUsuario(newUsuario).then((idUsario)=> Navigator.pop(context));
+                  //Navigator.pushNamed(context, '/menuPrincipal');
                 },
                 style: ElevatedButton.styleFrom(
                     padding:

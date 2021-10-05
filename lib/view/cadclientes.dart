@@ -19,7 +19,6 @@ class cadClientes extends StatefulWidget {
 }
 
 class _cadClientesState extends State<cadClientes> {
-
   void _cpe() async {
     // Variáveis que receberão os dados do WebService
     String _bairro;
@@ -45,7 +44,7 @@ class _cadClientesState extends State<cadClientes> {
     _estadoController.text = _uf;
   }
 
-    //============================================================================
+  //============================================================================
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +90,35 @@ class _cadClientesState extends State<cadClientes> {
               _cidadeController, 'Cidade', 'Cidade', Icons.where_to_vote_sharp),
           Editor(
               _estadoController, 'Estado', 'Estado', Icons.where_to_vote_sharp),
-          Editor(_cepController, 'CEP', 'CEP', Icons.where_to_vote_sharp),
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                  controller: _cepController,
+                  maxLength: 8,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    prefixIcon: Icon(
+                      Icons.where_to_vote,
+                      color: Color(0xFF4bacb8),
+                    ),
+                    labelText: 'CEP',
+                    hintText: 'CEP',
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (_cepController) {
+                    if (_cepController.length >= 8) {
+                      _cpe();
+                    }
+                  }),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(

@@ -1,5 +1,8 @@
 // @dart=2.9
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    import 'package:obracalc/database/app_database.dart';
+import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:obracalc/view/cadclientes.dart';
 import 'package:obracalc/view/cadservicos.dart';
 import 'package:obracalc/view/cadundmedidas.dart';
@@ -69,6 +72,7 @@ class ObraCalc extends StatelessWidget {
         primaryColor: Color(0xFF4bacb8),
         accentColor: Color(0xFFf5f5f5),
         splashColor: Colors.yellow,
+        primarySwatch: Colors.cyan,
         //primaryColor: Color(0xFFa1887f),
         //primaryColor: Color(0xFF388e3c),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -115,9 +119,9 @@ Widget _introScreen() {
         loaderColor: Colors.transparent,
       ),
       Container(
-        decoration: BoxDecoration(
+          decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/logosm1.png"),
+            image: AssetImage("images/logoobracalcnome.png"),
             fit: BoxFit.none,
           ),
         ),

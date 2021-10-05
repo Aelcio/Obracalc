@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:obracalc/dao/servico_dao.dart';
 import 'package:obracalc/generic/campos.dart';
+import 'package:obracalc/models/servicoModelo.dart';
 
 class cadServicos extends StatelessWidget {
   final TextEditingController _nomeServico = TextEditingController();
   final TextEditingController _descricaoServico = TextEditingController();
+  final ServicoDao _dao = ServicoDao();
 
     @override
   Widget build(BuildContext context) {
@@ -19,7 +22,12 @@ class cadServicos extends StatelessWidget {
                 child: Text(
                   "Salvar",
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  final String nomeServico = _nomeServico.text;
+                  final String descricao = _descricaoServico.text;
+                  final Servico newServico = Servico(0, nomeServico, descricao);
+                  _dao.save(newServico).then((idServico)=> Navigator.pop(context));
+                },
                 style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
                     textStyle: TextStyle(
