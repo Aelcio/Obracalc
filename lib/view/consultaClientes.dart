@@ -10,7 +10,7 @@ class consultaClientes extends StatelessWidget {
       appBar: AppBar(title: Text('Consulta Clientes')),
       body: ListView(
         children: [
-          Editor(_buscaCliente, '', 'Localizar Cliente', Icons.search),
+          Editor(_buscaCliente, '', 'Localizar Cliente', Icons.search, TextInputType.text, TextCapitalization.words),
         ],
       ),
     );

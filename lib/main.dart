@@ -1,19 +1,19 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    import 'package:obracalc/database/app_database.dart';
+import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:obracalc/view/cadclientes.dart';
 import 'package:obracalc/view/cadservicos.dart';
 import 'package:obracalc/view/cadundmedidas.dart';
 import 'package:obracalc/view/cadusuarios.dart';
-import 'package:obracalc/view/cardmateriais.dart';
+import 'package:obracalc/view/cadmateriais.dart';
 import 'package:obracalc/view/consultaClientes.dart';
 import 'package:obracalc/view/consultaMateriais.dart';
 import 'package:obracalc/view/consultaorcamento.dart';
 import 'package:obracalc/view/consultaservicos.dart';
 import 'package:obracalc/view/consultaundmedidas.dart';
-import 'package:obracalc/view/consultausuartios.dart';
+import 'package:obracalc/view/consultausuarios.dart';
 import 'package:obracalc/view/listracoconcreto.dart';
 import 'package:obracalc/view/listtracoargamassa.dart';
 import 'package:obracalc/view/menuMateriais.dart';
@@ -32,6 +32,7 @@ import 'package:obracalc/view/pesquisaundmedida.dart';
 import 'package:obracalc/view/telaInicial.dart';
 import 'package:obracalc/view/telalogin.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:obracalc/controller/usuarioControle.dart';
 
 void main() {
   runApp(ObraCalc());
@@ -77,8 +78,7 @@ class ObraCalc extends StatelessWidget {
         //primaryColor: Color(0xFF388e3c),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: TextButton.styleFrom(backgroundColor: Color(0xFF4bacb8)),
-            //style: TextButton.styleFrom(backgroundColor: Color(0xFF388e3c)),
-
+          //style: TextButton.styleFrom(backgroundColor: Color(0xFF388e3c)),
         ),
       ),
       home: MyHomePage(),
@@ -110,16 +110,13 @@ Widget _introScreen() {
         gradientBackground: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [
-            Color(0xFF4bacb8),
-            Color(0xFF4bacb8)
-          ],
+          colors: [Color(0xFF4bacb8), Color(0xFF4bacb8)],
         ),
         navigateAfterSeconds: telaLogin(),
         loaderColor: Colors.transparent,
       ),
       Container(
-          decoration: BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/logoobracalcnome.png"),
             fit: BoxFit.none,

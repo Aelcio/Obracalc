@@ -29,14 +29,15 @@ class btnGenericoMenu extends StatelessWidget {
                 )
               },
               label: Text(
-                _nomeBotao,
+                _nomeBotao,  textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 14.0,
+
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                alignment: Alignment.centerLeft,
+                //alignment: Alignment.centerLeft,
                   primary: Colors.white, minimumSize: Size(80, 90)),
             ),
           )

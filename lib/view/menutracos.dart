@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:obracalc/generic/botaomenu.dart';
 
+
 import 'package:obracalc/view/listracoconcreto.dart';
 
 class menuTraco extends StatelessWidget {
-  const menuTraco({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class menuTraco extends StatelessWidget {
               child: Row(
           children: [
               Expanded(child:
-              btnGenericoMenu("Cadastrar", '/menuTraco', Icons.add),
+              btnGenericoMenu("Traço para Concreto", '/listaTracoConcreto', Icons.all_inclusive),
               ),
-              Expanded(child:
-              btnGenericoMenu("Pesquisar", '/menuTraco', Icons.search),
+              Expanded(
+                child: btnGenericoMenu("Traço para Argamassa", '/listaTracoArgamassa', Icons.all_inclusive),
               ),
           ],
         ),

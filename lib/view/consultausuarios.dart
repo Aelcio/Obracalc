@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:obracalc/dao/usuario_dao.dart';
+import 'package:obracalc/controller/usuarioControle.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
+import 'package:obracalc/view/telalogin.dart';
 
 class consultaUsuarios extends StatelessWidget {
   final TextEditingController _buscaUsuario = TextEditingController();
-  final UsuarioDao _dao = UsuarioDao();
+  final UsuarioControle _dao = UsuarioControle();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Consulta Usuarios')),
-
-        body: Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<Usuario>>(
           initialData: [],

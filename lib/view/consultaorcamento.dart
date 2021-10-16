@@ -10,7 +10,7 @@ class consultaOrcamentos extends StatelessWidget {
       appBar: AppBar(title: Text('Consulta Orçamentos')),
       body: ListView(
         children: [
-          Editor(_buscaCliente, '', 'Localizar Orçamento', Icons.search),
+          Editor(_buscaCliente, '', 'Localizar Orçamento', Icons.search, TextInputType.text, TextCapitalization.words),
         ],
       ),
     );

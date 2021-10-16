@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:obracalc/dao/usuario_dao.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:obracalc/controller/usuarioControle.dart';
 import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:obracalc/view/menuprincipal.dart';
 import 'package:obracalc/view/menutracos.dart';
+import 'package:sqflite/sqflite.dart';
 
 class cadUsuarios extends StatelessWidget {
   final TextEditingController _controladorCampoNome = TextEditingController();
   final TextEditingController _controladorCampoLogin = TextEditingController();
   final TextEditingController _controladorCampoSenha = TextEditingController();
-  final UsuarioDao _dao = UsuarioDao();
+  final UsuarioControle _dao = UsuarioControle();
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,15 @@ class cadUsuarios extends StatelessWidget {
                   final String senha = _controladorCampoSenha.text;
                   final Usuario newUsuario = Usuario(0, nome, login, senha);
                   _dao.saveUsuario(newUsuario).then((idUsario)=> Navigator.pop(context));
+
+                  Fluttertoast.showToast(
+                      msg: "Usuário cadastrado com sucesso!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.black12,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
                   //Navigator.pushNamed(context, '/menuPrincipal');
                 },
                 style: ElevatedButton.styleFrom(
@@ -69,6 +80,7 @@ class Editor extends StatelessWidget {
       child: TextField(
         //textAlign: TextAlign.center,
         controller: _controlador,
+        obscureText: true,
         decoration: InputDecoration(
           //enabledBorder: InputBorder.none,
           fillColor: Colors.white,
@@ -80,7 +92,7 @@ class Editor extends StatelessWidget {
           labelText: (_rotulo),
           hintText: (_dica),
           //icon: Icon(_icone),
-          //contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
+          contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
         ),
       ),
     );

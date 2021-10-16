@@ -1,9 +1,8 @@
 import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/servicoModelo.dart';
-import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:sqflite/sqflite.dart';
 
-class ServicoDao {
+class ServicoControle {
 
   static const String tableSql = 'CREATE TABLE servicos('
       'idServico INTEGER PRIMARY KEY, '

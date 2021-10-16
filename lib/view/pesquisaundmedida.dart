@@ -15,9 +15,9 @@ class pesquisaUndMedida extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-          Editor(_descricao, 'Descricao', 'Descricao', Icons.water),
-          Editor(_unidadeMedida, 'Unidade de Medida', 'Unidade de Medida', Icons.search),
-          Editor(_valorUnitario, 'Valor Unitário', 'Valor Unitário', Icons.water),
+          Editor(_descricao, 'Descricao', 'Descricao', Icons.water, TextInputType.text, TextCapitalization.words),
+          Editor(_unidadeMedida, 'Unidade de Medida', 'Unidade de Medida', Icons.search, TextInputType.text, TextCapitalization.words),
+          Editor(_valorUnitario, 'Valor Unitário', 'Valor Unitário', Icons.water, TextInputType.number, TextCapitalization.words),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(

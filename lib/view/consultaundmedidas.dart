@@ -10,7 +10,7 @@ class consultaUndMedida extends StatelessWidget {
       appBar: AppBar(title: Text('Consulta Unid. Medida')),
       body: ListView(
         children: [
-          Editor(_buscaCliente, '', 'Localizar Unidade de Medida', Icons.search),
+          Editor(_buscaCliente, '', 'Localizar Unidade de Medida', Icons.search, TextInputType.text, TextCapitalization.words),
         ],
       ),
     );

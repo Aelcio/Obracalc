@@ -10,7 +10,7 @@ class consultaMateriais extends StatelessWidget {
       appBar: AppBar(title: Text('Consulta Materiais')),
       body: ListView(
         children: [
-          Editor(_buscaCliente, '', 'Localizar Material', Icons.search),
+          Editor(_buscaCliente, '', 'Localizar Material', Icons.search, TextInputType.text, TextCapitalization.words),
         ],
       ),
     );

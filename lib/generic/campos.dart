@@ -5,8 +5,10 @@ class Editor extends StatelessWidget {
   final String _rotulo;
   final String _dica;
   final IconData _icone;
+  final TextInputType _tipoTeclado;
+  final TextCapitalization _cap;
 
-  const Editor(this._controlador, this._rotulo, this._dica, this._icone);
+  const Editor(this._controlador, this._rotulo, this._dica, this._icone, this._tipoTeclado, this._cap);
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +31,11 @@ class Editor extends StatelessWidget {
           prefixIcon: Icon(_icone, color: Color(0xFF4bacb8)),
           labelText: (_rotulo),
           hintText: (_dica),
-
           //icon: Icon(_icone),
           contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 10.0),
         ),
+        keyboardType: _tipoTeclado,
+        textCapitalization: _cap,
       ),
     );
   }

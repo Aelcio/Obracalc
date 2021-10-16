@@ -2,8 +2,7 @@ import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:sqflite/sqflite.dart';
 
-class UsuarioDao {
-
+class UsuarioControle {
   static const String tableSql = 'CREATE TABLE usuarios('
       'idUsuario INTEGER PRIMARY KEY, '
       'nome TEXT, '
@@ -34,4 +33,5 @@ class UsuarioDao {
     }
     return usuarios;
   }
-}
+ }
+

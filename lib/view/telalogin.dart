@@ -1,15 +1,49 @@
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:obracalc/view/cadusuarios.dart';
-import 'package:obracalc/view/menuprincipal.dart';
-import 'package:obracalc/view/menutracos.dart';
-import 'package:path/path.dart';
+import 'package:obracalc/controller/usuarioControle.dart';
+import 'package:obracalc/database/app_database.dart';
+import 'package:obracalc/models/usuariosModelo.dart';
+import 'package:sqflite/sqflite.dart';
 
-class telaLogin extends StatelessWidget {
+class telaLogin extends StatefulWidget {
+  @override
+  State<telaLogin> createState() => _telaLoginState();
+}
+
+class _telaLoginState extends State<telaLogin> {
   final TextEditingController _controladorCampoLogin = TextEditingController();
+
   final TextEditingController _controladorCampoSenha = TextEditingController();
+
+  final String lista = '';
+
+  final UsuarioControle _dao = UsuarioControle();
+
+  String var_json = '{"login":"aelcio.macedo", "senha": "1234"}';
 
   @override
   Widget build(BuildContext context) {
+    void consultaUser() {
+      setState(() {
+        Map json = jsonDecode(var_json);
+        if (json["login"] == _controladorCampoLogin.text &&
+            json["senha"] == _controladorCampoSenha.text) {
+          Navigator.pushNamed(context, '/menuPrincipal');
+        } else {
+          //print("Usuário não encontrado");
+          Fluttertoast.showToast(
+              msg: "Usuário ou Senha Inválidos!",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.black12,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }
+      });
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFFf5f5f5),
       appBar: AppBar(title: Text("Login")),
@@ -18,27 +52,30 @@ class telaLogin extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Editor(_controladorCampoLogin, "Login", "", Icons.account_circle, TextInputType.text),
+          Editor(_controladorCampoLogin, "Login", "", Icons.account_circle,
+              TextInputType.text),
           //Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open, TextInputType.text),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextField(
-                obscureText: true,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+              controller: _controladorCampoSenha,
+              obscureText: true,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
                 //enabledBorder: InputBorder.none,
                 fillColor: Colors.white,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
-
                 ),
-                  prefixIcon: Icon(Icons.lock_open,
-                    color: Color(0xFF4bacb8),
-                  ),
+                prefixIcon: Icon(
+                  Icons.lock_open,
+                  color: Color(0xFF4bacb8),
+                ),
                 labelText: 'Senha',
                 hintText: 'Senha',
-                contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
               ),
             ),
           ),
@@ -51,7 +88,7 @@ class telaLogin extends StatelessWidget {
                   "ENTRAR",
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/menuPrincipal');
+                  consultaUser();
                 },
                 style: ElevatedButton.styleFrom(
                     padding:
@@ -87,7 +124,8 @@ class Editor extends StatelessWidget {
   final IconData _icone;
   final TextInputType _tipoEntrada;
 
-  const Editor(this._controlador, this._rotulo, this._dica, this._icone, this._tipoEntrada);
+  const Editor(this._controlador, this._rotulo, this._dica, this._icone,
+      this._tipoEntrada);
 
   @override
   Widget build(BuildContext context) {
@@ -110,24 +148,9 @@ class Editor extends StatelessWidget {
           ),
           labelText: (_rotulo),
           hintText: (_dica),
-          contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
         ),
-      ),
-    );
-  }
-}
-
-class botoes extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        child: Text("Entrar"),
-        onPressed: () => null,
-        style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 12.0),
-            textStyle: TextStyle(fontSize: 18)),
       ),
     );
   }

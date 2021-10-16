@@ -20,22 +20,22 @@ class alteraClientes extends StatelessWidget {
       appBar: AppBar(title: Text("Cadastro de Clientes")),
       body: ListView(
         children: [
-          Editor(_nome, 'Nome', '', Icons.person),
-          Editor(_celular, 'Celular', 'Celular', Icons.settings_cell_rounded),
-          Editor(_telefone, 'Telefone', 'Telefone', Icons.phone),
+          Editor(_nome, 'Nome', '', Icons.person, TextInputType.text, TextCapitalization.words),
+          Editor(_celular, 'Celular', 'Celular', Icons.settings_cell_rounded, TextInputType.number, TextCapitalization.words),
+          Editor(_telefone, 'Telefone', 'Telefone', Icons.phone, TextInputType.number, TextCapitalization.words),
           Center(
             child: Text(
               'DOCUMENTOS',
             ),
           ),
-          Editor(_CPF, 'CPF', 'CPF', Icons.paste),
-          Editor(_CNPJ, 'CNPJ', 'CNPJ', Icons.paste),
+          Editor(_CPF, 'CPF', 'CPF', Icons.paste, TextInputType.number, TextCapitalization.words),
+          Editor(_CNPJ, 'CNPJ', 'CNPJ', Icons.paste, TextInputType.number, TextCapitalization.words),
           Center(child: Text('ENDEREÇO')),
-          Editor(_logradouro, 'Logradouro', 'Logradouro', Icons.paste),
-          Editor(_bairro, 'Bairro', 'Bairro', Icons.home),
-          Editor(_cidade, 'Cidade', 'Cidade', Icons.home),
-          Editor(_estado, 'Estado', 'Estado', Icons.home),
-          Editor(_cep, 'CEP', 'CEP', Icons.home),
+          Editor(_logradouro, 'Logradouro', 'Logradouro', Icons.paste, TextInputType.text, TextCapitalization.words),
+          Editor(_bairro, 'Bairro', 'Bairro', Icons.home, TextInputType.text, TextCapitalization.words),
+          Editor(_cidade, 'Cidade', 'Cidade', Icons.home, TextInputType.text, TextCapitalization.words),
+          Editor(_estado, 'Estado', 'Estado', Icons.home, TextInputType.text, TextCapitalization.words),
+          Editor(_cep, 'CEP', 'CEP', Icons.home, TextInputType.number, TextCapitalization.words),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(

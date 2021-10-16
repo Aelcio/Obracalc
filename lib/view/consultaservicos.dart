@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:obracalc/dao/servico_dao.dart';
-import 'package:obracalc/generic/campos.dart';
+import 'package:obracalc/controller/servicoControle.dart';
 import 'package:obracalc/models/servicoModelo.dart';
 
 class consultaServicos extends StatelessWidget {
   final TextEditingController _buscaCliente = TextEditingController();
-  final ServicoDao _dao = ServicoDao();
+  final ServicoControle _dao = ServicoControle();
 
   @override
   Widget build(BuildContext context) {

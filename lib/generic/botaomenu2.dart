@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class  btnGenericoMenu extends StatelessWidget {
+class  btnGenericoMenu2 extends StatelessWidget {
 
   final String _nomeBotao;
   final String _chamada;
 
-  btnGenericoMenu(this._nomeBotao, this._chamada);
+  btnGenericoMenu2(this._nomeBotao, this._chamada);
 
   @override
   Widget build(BuildContext context) {
