@@ -1,9 +1,15 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:obracalc/controller/pessoaControle.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/pessoaModelo.dart';
+import 'package:obracalc/models/pfModelo.dart';
+import 'package:path/path.dart';
 import 'package:search_cep/search_cep.dart';
 
 final TextEditingController _nomeController = TextEditingController();
@@ -24,7 +30,10 @@ class cadClientes extends StatefulWidget {
 }
 
 class _cadClientesState extends State<cadClientes> {
-  int valor = 0;
+// bool value = false;
+  int? val;
+  bool cpfativo = false;
+  bool cnpjativo = false;
 
   void _cpe() async {
     // Variáveis que receberão os dados do WebService
@@ -52,16 +61,53 @@ class _cadClientesState extends State<cadClientes> {
   }
 
   //============================================================================
+
   @override
   Widget build(BuildContext context) {
+    final mascaraCelular = new MaskTextInputFormatter(mask: "(##) #####-####");
+
+    //String opEscolhida = "Teste"
+
     return Scaffold(
       backgroundColor: Color(0xFFf5f5f5),
       appBar: AppBar(title: Text("Cadastro de Clientes")),
       body: ListView(
         children: [
-          Editor(_nomeController, 'Nome', '', Icons.person, TextInputType.text,
-              TextCapitalization.words),
-          Editor(_celularController,'Celular','Celular',Icons.settings_cell_rounded, TextInputType.number,TextCapitalization.words),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Editor(_nomeController, 'Nome', '', Icons.person,
+                TextInputType.text, TextCapitalization.words),
+          ),
+          //Editor(_celularController,'Celular','Celular',Icons.settings_cell_rounded, TextInputType.number,TextCapitalization.words),
+
+          //Início Campo Celular com Máscara
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+                controller: _celularController,
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  TelefoneInputFormatter(),
+                ],
+                decoration: InputDecoration(
+                  //enabledBorder: InputBorder.none,
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.settings_cell_rounded,
+                    color: Color(0xFF4bacb8),
+                  ),
+                  labelText: 'Celular',
+                  hintText: 'Celular',
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                )),
+          ),
+          //Fim Campo Celular com Máscara
 
           //Início Campo Telefone com Máscara
           Padding(
@@ -87,9 +133,8 @@ class _cadClientesState extends State<cadClientes> {
                   labelText: 'Telefone',
                   hintText: 'Telefone',
                   contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-                )
-            ),
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                )),
           ),
           //Fim Campo Telefone com Máscara
 
@@ -104,61 +149,83 @@ class _cadClientesState extends State<cadClientes> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Radio(
-                groupValue: 1,
-                value: valor,
-                onChanged: (int? vl) {
-                  //print(vl);
+                value: 1,
+                groupValue: val,
+                activeColor: Colors.cyan,
+                onChanged: (T) {
+                  print(T);
                   setState(() {
-                    valor = 0;
+                    val = T as int?;
+                    cpfativo = true;
+                    cnpjativo = false;
                   });
                 },
               ),
               Text('Pessoa Física'),
               Radio(
-                groupValue: 1,
-                value: null,
-                onChanged: null,
+                value: 2,
+                groupValue: val,
+                activeColor: Colors.cyan,
+                onChanged: (T) {
+                  print(T);
+                  setState(() {
+                    val = T as int?;
+                    cpfativo = false;
+                    cnpjativo = true;
+                  });
+                },
               ),
               Text('Pessoa Jurídica'),
             ],
           ),
           //Editor(_CPFController, 'CPF', 'CPF', Icons.paste,
-              //TextInputType.number, TextCapitalization.words),
+          //TextInputType.number, TextCapitalization.words),
 
           //Início Campo CPF com Máscara
-          Padding(
+          GestureDetector(
+              child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+
               controller: _CPFController,
+              keyboardType: TextInputType.number,
+              enabled: cpfativo,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
-                CpfInputFormatter()
+                CpfInputFormatter(),
               ],
-                decoration: InputDecoration(
-                  //enabledBorder: InputBorder.none,
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.paste,
-                    color: Color(0xFF4bacb8),
-                  ),
-                  labelText: 'CPF',
-                  hintText: 'CPF',
-                  contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-                )
+              decoration: InputDecoration(
+                //enabledBorder: InputBorder.none,
+                fillColor: Colors.white,
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                prefixIcon: Icon(
+                  Icons.paste,
+                  color: Color(0xFF4bacb8),
+                ),
+                labelText: 'CPF',
+                hintText: 'CPF',
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+              ),
+              onChanged: (_CPFController) {
+                if (_CPFController.length >= 14) {
+                  validaCPF();
+                }
+              },
             ),
-          ),
-          //Fim Campo CNPJ com Máscara
+          )),
+          //Fim Campo CPF com Máscara
 
-          //Início Campo CPF com Máscara
+          //Início Campo CNPJ com Máscara
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
                 controller: _CNPJController,
+                keyboardType: TextInputType.number,
+                enabled: cnpjativo,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   CnpjInputFormatter()
@@ -177,15 +244,49 @@ class _cadClientesState extends State<cadClientes> {
                   labelText: 'CNPJ',
                   hintText: 'CNPJ',
                   contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-                )
-            ),
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                )),
           ),
           //Fim Campo CNPJ com Máscara
 
           //Editor(_CNPJController, 'CNPJ', 'CNPJ', Icons.paste,
-              //TextInputType.number, TextCapitalization.words),
+          //TextInputType.number, TextCapitalization.words),
           Center(child: Text('ENDEREÇO')),
+
+          GestureDetector(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                  controller: _cepController,
+                  //inputFormatters: [
+                  ///FilteringTextInputFormatter.digitsOnly,
+                  //(),
+                  //],
+                  maxLength: 8,
+                  decoration: InputDecoration(
+                    counterText: "",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    prefixIcon: Icon(
+                      Icons.where_to_vote,
+                      color: Color(0xFF4bacb8),
+                    ),
+                    labelText: 'CEP',
+                    hintText: 'CEP',
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (_cepController) {
+                    if (_cepController.length >= 8) {
+                      _cpe();
+                    }
+                  }),
+            ),
+          ),
           Editor(
               _logradouroController,
               'Logradouro',
@@ -214,69 +315,86 @@ class _cadClientesState extends State<cadClientes> {
               Icons.where_to_vote_sharp,
               TextInputType.text,
               TextCapitalization.words),
-          GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                  controller: _cepController,
-                  //inputFormatters: [
-                    ///FilteringTextInputFormatter.digitsOnly,
-                    //(),
-                  //],
-                  maxLength: 8,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    prefixIcon: Icon(
-                      Icons.where_to_vote,
-                      color: Color(0xFF4bacb8),
-                    ),
-                    labelText: 'CEP',
-                    hintText: 'CEP',
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-                  ),
-                  keyboardType: TextInputType.number,
-                  onChanged: (_cepController) {
-                    if (_cepController.length >= 8) {
-                      _cpe();
-                    }
-                  }),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-                child: Text(
-                  "Salvar",
+              child: Text(
+                "Salvar",
+              ),
+              onPressed: () {
+                final String nome = _nomeController.text;
+                final String celular = _celularController.text;
+                final String telefone = _telefoneController.text;
+                final String cpf = _CPFController.text;
+                final String cnpj = _CNPJController.text;
+                final String logradouro = _logradouroController.text;
+                final String bairro = _bairroController.text;
+                final String cidade = _cidadeController.text;
+                final String estado = _estadoController.text;
+                final String cep = _cepController.text;
+                final PessoaModelo newPessoa = PessoaModelo(
+                    0,
+                    nome,
+                    celular,
+                    telefone,
+                    cpf,
+                    cnpj,
+                    logradouro,
+                    bairro,
+                    cidade,
+                    estado,
+                    cep);
+                _control
+                    .save(newPessoa)
+                    .then((idPessoa) => Navigator.pop(context));
+
+                _nomeController.clear();
+                _celularController.clear();
+                _telefoneController.clear();
+                _CPFController.clear();
+                _CNPJController.clear();
+                _logradouroController.clear();
+                _bairroController.clear();
+                _cidadeController.clear();
+                _cidadeController.clear();
+                _estadoController.clear();
+                _cepController.clear();
+
+                Fluttertoast.showToast(
+                    msg: "Cliente cadastrado com sucesso!",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.black12,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
+                textStyle: TextStyle(
+                  fontSize: 18,
                 ),
-                onPressed: () {
-                  final String nome = _nomeController.text;
-                  final String celular = _celularController.text;
-                  final String telefone = _telefoneController.text;
-                  final String logradouro = _logradouroController.text;
-                  final String bairro = _bairroController.text;
-                  final String cidade = _cidadeController.text;
-                  final String estado = _estadoController.text;
-                  final String cep = _cepController.text;
-                  final PessoaModelo newPessoa = PessoaModelo(0, nome, celular,
-                      telefone, logradouro, bairro, cidade, estado, cep);
-                  _control
-                      .save(newPessoa)
-                      .then((idMaterial) => Navigator.pop(context));
-                },
-                style: ElevatedButton.styleFrom(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
-                    textStyle: TextStyle(
-                      fontSize: 18,
-                    ))),
+              ),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  void validaCPF() {
+    String _cpf = _CPFController.text;
+    if (GetUtils.isCpf(_cpf)) {
+      print("CPF Válido");
+    } else {
+      Fluttertoast.showToast(
+          msg: "CPF Inválido",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 2,
+          backgroundColor: Colors.black,
+          textColor: Colors.red,
+          fontSize: 20.0);
+    }
   }
 }

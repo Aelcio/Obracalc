@@ -19,14 +19,39 @@ class cadUsuarios extends StatelessWidget {
       backgroundColor: Color(0xFFe0e0e0),
       appBar: AppBar(title: Text("Cadastro Usuário",)),
       //bottomNavigationBar: BottomNavigationBar(currentI,ndex: 0, items: [],),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Editor(_controladorCampoNome, 'Nome', 'Nome Completo', Icons.person),
-          Editor(_controladorCampoLogin, "Login", "", Icons.account_circle),
-          Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open),
+          Editor(_controladorCampoNome, 'Nome', 'Nome Completo', Icons.person, TextInputType.text, TextCapitalization.words),
+          Editor(_controladorCampoLogin, "Login", "", Icons.account_circle, TextInputType.text, TextCapitalization.none),
+          //Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open),
 
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: _controladorCampoSenha,
+              obscureText: true,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                //enabledBorder: InputBorder.none,
+                fillColor: Colors.white,
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                prefixIcon: Icon(
+                  Icons.lock_open,
+                  color: Color(0xFF4bacb8),
+                ),
+                labelText: 'Senha',
+                hintText: 'Senha',
+                contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+              ),
+            ),
+          ),
           //botoes(),
 
           Padding(
@@ -37,7 +62,7 @@ class cadUsuarios extends StatelessWidget {
                 ),
                 onPressed: () {
                   final String nome = _controladorCampoNome.text;
-                  final String login = _controladorCampoSenha.text;
+                  final String login = _controladorCampoLogin.text;
                   final String senha = _controladorCampoSenha.text;
                   final Usuario newUsuario = Usuario(0, nome, login, senha);
                   _dao.saveUsuario(newUsuario).then((idUsario)=> Navigator.pop(context));
@@ -57,7 +82,8 @@ class cadUsuarios extends StatelessWidget {
                     EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
                     textStyle: TextStyle(
                       fontSize: 18,
-                    ))),
+                    )))
+            ,
           )
         ],
       ),
@@ -70,8 +96,10 @@ class Editor extends StatelessWidget {
   final String _rotulo;
   final String _dica;
   final IconData _icone;
+  final TextInputType _tipoTeclado;
+  final TextCapitalization _cap;
 
-  const Editor(this._controlador, this._rotulo, this._dica, this._icone);
+  const Editor(this._controlador, this._rotulo, this._dica, this._icone, this._tipoTeclado, this._cap);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +108,6 @@ class Editor extends StatelessWidget {
       child: TextField(
         //textAlign: TextAlign.center,
         controller: _controlador,
-        obscureText: true,
         decoration: InputDecoration(
           //enabledBorder: InputBorder.none,
           fillColor: Colors.white,
@@ -91,9 +118,11 @@ class Editor extends StatelessWidget {
           prefixIcon: Icon(_icone, color: Color(0xFF4bacb8)),  
           labelText: (_rotulo),
           hintText: (_dica),
-          //icon: Icon(_icone),
+           //icon: Icon(_icone),
           contentPadding: EdgeInsets.symmetric( horizontal: 20.0,vertical: 12.0),
         ),
+        keyboardType: _tipoTeclado,
+        textCapitalization: _cap,
       ),
     );
   }

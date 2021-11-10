@@ -1,8 +1,9 @@
+import 'package:obracalc/controller/pessoaControle.dart';
 import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/pfModelo.dart';
 import 'package:sqflite/sqflite.dart';
 
-class PfControle {
+class PfControle{
   static const String tableSql = 'CREATE TABLE pessoa_fisica('
           'idPessoaFisica INTEGER PRIMARY KEY, '
           'cpf TEXT, ' +

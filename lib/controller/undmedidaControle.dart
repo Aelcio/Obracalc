@@ -8,6 +8,14 @@ class UndMedidaControle{
       'descricao TEXT, '
       'descReduzida TEXT )';
 
+  static const String insertSql = 'INSERT INTO unidademedidas (descricao, descReduzida) VALUES'
+      '("Unidade" ,"UN"),'
+      '("Sacos" ,"SC"),'
+      '("Metro Quadrado", "M²"), '
+      '("Metro Cúbico", "M³"), '
+      '("Barra", "BR"), '
+      '("Lata", "LT")  ';
+
   Future<int> save(UnidadeMedida undmedida) async {
     final Database db = await getDatabase();
     final Map<String, dynamic> undmedidaMap = Map();

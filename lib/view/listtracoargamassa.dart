@@ -45,7 +45,7 @@ class listaTracoArgamassa extends StatelessWidget {
     return TableRow(
       children: listaNomes.split(',').map((name) {
         return Container(
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
           child: Text(
             name,
             style: TextStyle(fontSize: 11.0),

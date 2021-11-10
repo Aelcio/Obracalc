@@ -31,6 +31,7 @@ import 'package:obracalc/view/pesquisaservicos.dart';
 import 'package:obracalc/view/pesquisaundmedida.dart';
 import 'package:obracalc/view/telaInicial.dart';
 import 'package:obracalc/view/telalogin.dart';
+import 'package:obracalc/view/homescreen.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:obracalc/controller/usuarioControle.dart';
 
@@ -67,17 +68,21 @@ class ObraCalc extends StatelessWidget {
         '/consultaClientes': (context) => consultaClientes(),
         '/menuUsuarios': (context) => menuUsuarios(),
         '/consultaUsuarios': (context) => consultaUsuarios(),
+        '/homeScreen': (context) => HomeScreen(),
+
       },
       title: 'Obra Calc',
       theme: ThemeData(
         primaryColor: Color(0xFF4bacb8),
-        accentColor: Color(0xFFf5f5f5),
+          //primaryColor: Color(0xFF0C9ABE),
+
+        accentColor: Color(0xFF0A87A6),
         splashColor: Colors.yellow,
         primarySwatch: Colors.cyan,
         //primaryColor: Color(0xFFa1887f),
         //primaryColor: Color(0xFF388e3c),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: TextButton.styleFrom(backgroundColor: Color(0xFF4bacb8)),
+          style: TextButton.styleFrom(backgroundColor: Color(0xFF0A87A6)),
           //style: TextButton.styleFrom(backgroundColor: Color(0xFF388e3c)),
         ),
       ),

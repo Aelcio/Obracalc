@@ -18,9 +18,9 @@ class btnGenericoMenu extends StatelessWidget {
         children: [
           Expanded(
             child: ElevatedButton.icon(
-            icon: Icon(
+              icon: Icon(
                 _icone,
-                color: Color(0xFF4bacb8),
+                color: Color(0xFF0D99BE),
               ),
               onPressed: () => {
                 Navigator.pushNamed(
@@ -29,16 +29,17 @@ class btnGenericoMenu extends StatelessWidget {
                 )
               },
               label: Text(
-                _nomeBotao,  textAlign: TextAlign.center,
+                _nomeBotao,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 14.0,
-
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                //alignment: Alignment.centerLeft,
-                  primary: Colors.white, minimumSize: Size(80, 90)),
+                  alignment: Alignment.centerLeft,
+                  primary: Colors.white,
+                  minimumSize: Size(80, 90)),
             ),
           )
         ],
@@ -46,15 +47,3 @@ class btnGenericoMenu extends StatelessWidget {
     );
   }
 }
-
-// child: ElevatedButton.icon(
-// icon: Icon(Icons.add, color: Colors.blue ,size: 24.0,),
-// onPressed: () => {Navigator.pushNamed(context,
-// _chamada,)},
-// label: Text(
-// _nomeBotao,
-// style: TextStyle(color: Colors.black, fontSize: 20.0),
-// ),
-// style: ElevatedButton.styleFrom(
-// primary: Colors.white,
-// minimumSize: Size(170, 150))),

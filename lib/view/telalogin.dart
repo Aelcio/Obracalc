@@ -46,72 +46,78 @@ class _telaLoginState extends State<telaLogin> {
 
     return Scaffold(
       backgroundColor: Color(0xFFf5f5f5),
-      appBar: AppBar(title: Text("Login")),
+      //appBar: AppBar(title: Text("Login")),
       //bottomNavigationBar: BottomNavigationBar(currentIndex: 0, items: [],),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Editor(_controladorCampoLogin, "Login", "", Icons.account_circle,
-              TextInputType.text),
-          //Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open, TextInputType.text),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              controller: _controladorCampoSenha,
-              obscureText: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                //enabledBorder: InputBorder.none,
-                fillColor: Colors.white,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Editor(_controladorCampoLogin, "Login", "", Icons.account_circle_outlined,
+                TextInputType.text),
+            //Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open, TextInputType.text),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                controller: _controladorCampoSenha,
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  //enabledBorder: InputBorder.none,
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.lock_open,
+                    //color: Color(0xFF4bacb8),
+                      color: Color(0xFF0D99BE),
+
+                  ),
+                  labelText: 'Senha',
+                  hintText: 'Senha',
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
                 ),
-                prefixIcon: Icon(
-                  Icons.lock_open,
-                  color: Color(0xFF4bacb8),
-                ),
-                labelText: 'Senha',
-                hintText: 'Senha',
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
               ),
             ),
-          ),
-          //botoes(),
+            //botoes(),
 
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ElevatedButton(
-                child: Text(
-                  "ENTRAR",
-                ),
-                onPressed: () {
-                  consultaUser();
-                },
-                style: ElevatedButton.styleFrom(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
-                    textStyle: TextStyle(
-                      fontSize: 18,
-                    ))),
-          ),
-          Padding(
+            Padding(
               padding: const EdgeInsets.all(12.0),
-              child: TextButton(
+              child: ElevatedButton(
                   child: Text(
-                    'Cadastrar-se',
-                    style: TextStyle(fontSize: 18),
+                    "Entrar",
+                    style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/cadUsuarios');
+                    consultaUser();
                   },
                   style: ElevatedButton.styleFrom(
-                    alignment: Alignment.center,
-                    primary: Color(0xFFf5f5f5),
-                  )))
-        ],
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
+                      primary: Color(0xFF0D99BE),
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                      ))),
+            ),
+            Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextButton(
+                    child: Text(
+                      'Cadastrar-se',
+                      style: TextStyle(fontSize: 18, color: Color(0xFF0D99BE)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cadUsuarios');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.center,
+                      primary: Color(0xFFf5f5f5),
+                    )))
+          ],
+        ),
       ),
     );
   }
@@ -144,7 +150,7 @@ class Editor extends StatelessWidget {
           ),
           prefixIcon: Icon(
             _icone,
-            color: Color(0xFF4bacb8),
+            color: Color(0xFF0D99BE),
           ),
           labelText: (_rotulo),
           hintText: (_dica),

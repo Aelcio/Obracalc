@@ -26,8 +26,11 @@ Future<Database> getDatabase() async {
       db.execute(OrcamentoControle.tableSql);
       db.execute(MaterialOrcamentoControle.tableSql);
       db.execute(ServicoOrcamentoControle.tableSql);
-    },
+      db.execute(ServicoControle.insertSql);
+      db.execute(UndMedidaControle.insertSql);
+      db.execute(MaterialControle.insertSql);
+      },
     version: 1,
-    onDowngrade: onDatabaseDowngradeDelete
+    //onDowngrade: onDatabaseDowngradeDelete
   );
 }

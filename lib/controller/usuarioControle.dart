@@ -18,6 +18,20 @@ class UsuarioControle {
     return db.insert('usuarios', usuarioMap);
   }
 
+  Future<int> updateUsuario(Usuario usuario) async {
+    final Database db = await getDatabase();
+    final Map<String, dynamic> usuarioMap = Map();
+    usuarioMap['nome'] = usuario.nome;
+    usuarioMap['login'] = usuario.login;
+    usuarioMap['senha'] = usuario.senha;
+
+    var resultado = await db.update('usuarios', usuarioMap,
+      where: 'idUsuario ?',
+      whereArgs: [usuario.idUsuario]
+    );
+    return resultado;
+  }
+
   Future<List<Usuario>> findAllUsuario() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> result = await db.query('usuarios');
@@ -33,5 +47,6 @@ class UsuarioControle {
     }
     return usuarios;
   }
+
  }
 

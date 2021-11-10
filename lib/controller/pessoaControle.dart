@@ -8,6 +8,8 @@ class PessoaControle {
       'nomePessoa TEXT, '
       'celular TEXT, '
       'telefone TEXT, '
+      'cpf TEXT, '
+      'cnpj TEXT, '
       'logradouro TEXT, '
       'bairro TEXT, '
       'cidade TEXT, '
@@ -20,6 +22,8 @@ class PessoaControle {
     pessoaMap['nomePessoa'] = pessoa.nomePessoa;
     pessoaMap['celular'] = pessoa.celular;
     pessoaMap['telefone'] = pessoa.telefone;
+    pessoaMap['cpf'] = pessoa.cpf;
+    pessoaMap['cnpj'] = pessoa.cnpj;
     pessoaMap['logradouro'] = pessoa.logradouro;
     pessoaMap['bairro'] = pessoa.bairro;
     pessoaMap['cidade'] = pessoa.cidade;
@@ -38,6 +42,8 @@ class PessoaControle {
           map['nomePessoa'],
           map['celular'],
           map['telefone'],
+          map['cpf'],
+          map['cnpj'],
           map['logradouro'],
           map['bairro'],
           map['cidade'],

@@ -8,7 +8,7 @@ class menuServicos extends StatelessWidget {
     return Scaffold(
         backgroundColor: Color(0xFFe0e0e0),
         appBar: AppBar(
-          title: Text("Materiais"),
+          title: Text("Serviços"),
         ),
         body: Container(
           width: double.maxFinite,

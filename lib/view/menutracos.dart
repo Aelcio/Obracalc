@@ -20,10 +20,10 @@ class menuTraco extends StatelessWidget {
               child: Row(
           children: [
               Expanded(child:
-              btnGenericoMenu("Traço para Concreto", '/listaTracoConcreto', Icons.all_inclusive),
+              btnGenericoMenu("Concreto", '/listaTracoConcreto', Icons.all_inclusive),
               ),
               Expanded(
-                child: btnGenericoMenu("Traço para Argamassa", '/listaTracoArgamassa', Icons.all_inclusive),
+                child: btnGenericoMenu("Argamassa", '/listaTracoArgamassa', Icons.all_inclusive),
               ),
           ],
         ),

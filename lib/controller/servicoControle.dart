@@ -9,6 +9,13 @@ class ServicoControle {
       'nomeServico TEXT, '
       'descricao TEXT )';
 
+  static const String insertSql = 'INSERT INTO servicos (nomeServico, descricao) VALUES'
+      '("Muro" ,"Muro"),'
+      '("Contrapiso", "Contrapiso de Concreto"), '
+      '("Parede", "Parede Alvenaria"), '
+      '("Reboco", "Reboco"), '
+      '("Coluna", "Coluna de Concreto") ';
+
   Future<int> save(Servico servico) async {
     final Database db = await getDatabase();
     final Map<String, dynamic> servicoMap = Map();

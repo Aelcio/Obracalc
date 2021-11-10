@@ -23,12 +23,12 @@ class Editor extends StatelessWidget {
           fillColor: Colors.white,
           filled: true,
           border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),borderSide: BorderSide(
+          borderRadius: BorderRadius.circular(5.0),borderSide: BorderSide(
             color: Colors.red,
           )
 
           ),
-          prefixIcon: Icon(_icone, color: Color(0xFF4bacb8)),
+          prefixIcon: Icon(_icone, color: Color(0xFF0D99BE)),
           labelText: (_rotulo),
           hintText: (_dica),
           //icon: Icon(_icone),

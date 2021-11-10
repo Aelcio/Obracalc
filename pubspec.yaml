@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqflite:
+  sqflite: any
   path:
   splashscreen: ^1.2.0
   local_auth: ^1.1.8
@@ -36,7 +36,8 @@ dependencies:
   search_cep: ^2.0.0+1
   dropdownfield:
   brasil_fields:
-
+  get:
+  mask_text_input_formatter: ^1.2.1
 
 dev_dependencies:
   flutter_test:

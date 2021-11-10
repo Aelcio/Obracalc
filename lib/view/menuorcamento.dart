@@ -21,7 +21,7 @@ class menuOrcamento extends StatelessWidget {
                 child: btnGenericoMenu(
                     "Pesquisar", '/consultaOrcamento', Icons.search),
               ),
-            ],
+              ],
           ),
         ),
       ),

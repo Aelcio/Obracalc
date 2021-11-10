@@ -8,6 +8,15 @@ class MaterialControle{
       'descricao TEXT, '
       'valor DOUBLE, ' + 'idUndMedida INTEGER, FOREIGN KEY (idUndMedida) REFERENCES unidademedidas(idUndMedida)) ';
 
+  static const String insertSql = 'INSERT INTO materiais(descricao, idUndMedida, valor) VALUES'
+      '("Cimento Saco 50KG" , 2, 29.90),'
+      '("Areia" , 4, 95.00),'
+      '("Cal Virgem", 2, 9.90), '
+      '("Tijolo 6 Furos", 1, 0.44), '
+      '("Ferro 5/16", 5, 27.50), '
+      '("Ferro 4,2", 5, 9.50),  '
+      '("Pedra Brita", 4, 75.00)';
+
   Future<int> save(MaterialModelo material) async {
     final Database db = await getDatabase();
     final Map<String, dynamic> materialMap = Map();

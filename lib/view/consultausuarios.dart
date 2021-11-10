@@ -10,44 +10,47 @@ class consultaUsuarios extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: Text('Consulta Usuarios')),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FutureBuilder<List<Usuario>>(
-          initialData: [],
-          future: _dao.findAllUsuario(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-                break;
-              case ConnectionState.waiting:
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      Text('Carregando...')
-                    ],
-                  ),
-                );
-                break;
-              case ConnectionState.active:
-                break;
-              case ConnectionState.done:
-                final List<Usuario>? usuarios = snapshot.data;
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    final Usuario usuario = usuarios![index];
-                    return _UsuarioItem(usuario);
-                  },
-                  itemCount: usuarios!.length,
-                );
-                break;
-            }
-            return Text('Erro');
-          },
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FutureBuilder<List<Usuario>>(
+            initialData: [],
+            future: _dao.findAllUsuario(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  break;
+                case ConnectionState.waiting:
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando...')
+                      ],
+                    ),
+                  );
+                  break;
+                case ConnectionState.active:
+                  break;
+                case ConnectionState.done:
+                  final List<Usuario>? usuarios = snapshot.data;
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      final Usuario usuario = usuarios![index];
+                      return _UsuarioItem(usuario);
+                    },
+                    itemCount: usuarios!.length,
+                  );
+                  break;
+              }
+              return Text('Erro');
+            },
+          ),
         ),
       ),
     );

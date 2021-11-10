@@ -2,7 +2,7 @@ import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/pjModelo.dart';
 import 'package:sqflite/sqflite.dart';
 
-class pjControle {
+class pjControle{
   static const String tableSql = 'CREATE TABLE pessoa_juridica('
       'idPessoaJuridica INTEGER PRIMARY KEY, '
       'cnpj TEXT, ' +
