@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:obracalc/controller/usuarioControle.dart';
-import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
-import 'package:obracalc/view/menuprincipal.dart';
-import 'package:obracalc/view/menutracos.dart';
-import 'package:sqflite/sqflite.dart';
 
 class cadUsuarios extends StatelessWidget {
   final TextEditingController _controladorCampoNome = TextEditingController();
@@ -52,7 +48,6 @@ class cadUsuarios extends StatelessWidget {
               ),
             ),
           ),
-          //botoes(),
 
           Padding(
             padding: const EdgeInsets.all(8.0),
