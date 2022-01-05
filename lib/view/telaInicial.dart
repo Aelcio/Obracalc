@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:obracalc/view/biometria.dart';
 import 'package:obracalc/view/telalogin.dart';
 
 class telaInicial extends StatelessWidget {
@@ -21,7 +22,7 @@ class telaInicial extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => telaLogin()));
+                  .push(MaterialPageRoute(builder: (context) => telaBiometria()));
             },
           ),
           decoration: BoxDecoration(

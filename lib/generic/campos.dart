@@ -14,7 +14,14 @@ class Editor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(6.0),
-      child: TextField(
+      child: TextFormField(
+        validator: (value){
+          if(value!.isEmpty){
+            return 'Campo Obrigatório';
+          }else{
+            return null;
+          }
+        },
         //textAlign: TextAlign.center,
         controller: _controlador,
         decoration: InputDecoration(
@@ -22,11 +29,12 @@ class Editor extends StatelessWidget {
           //enabledBorder: InputBorder.none,
           fillColor: Colors.white,
           filled: true,
-          border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),borderSide: BorderSide(
-            color: Colors.red,
-          )
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.cyan)),
 
+          border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0),
+          borderSide: BorderSide(color: Colors.red,
+            ),
           ),
           prefixIcon: Icon(_icone, color: Color(0xFF0D99BE)),
           labelText: (_rotulo),

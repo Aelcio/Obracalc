@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:obracalc/controller/materialControle.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/materialModelo.dart';
 
@@ -11,7 +12,7 @@ class consultaMateriais extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Consulta Unidade Medida')),
+      appBar: AppBarCustomizada(titulo: 'Consulta Materiais',),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<MaterialModelo>>(
@@ -70,6 +71,21 @@ class _MaterialItem extends StatelessWidget {
         subtitle: Text(
           "Valor: " + material.valor.toString(),
           //style: TextStyle(fontSize: 16.0),
+        ),
+        trailing: Container(
+          width: 50,
+          child: Row(
+            children: [
+              GestureDetector(
+              child: IconButton(
+                icon: Icon(Icons.edit),
+                color: Color(0xFF0A87A6),
+                onPressed: () {
+
+                },
+              )),
+            ],
+          ),
         ),
       ),
     );

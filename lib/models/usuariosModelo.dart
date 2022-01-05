@@ -34,4 +34,6 @@ class Usuario {
   set idUsuario(int value) {
     idUsuario = value;
   }
+
+
 }

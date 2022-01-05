@@ -1,8 +1,7 @@
 // @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:obracalc/database/app_database.dart';
-import 'package:obracalc/models/usuariosModelo.dart';
+import 'package:obracalc/view/biometria.dart';
 import 'package:obracalc/view/cadclientes.dart';
 import 'package:obracalc/view/cadservicos.dart';
 import 'package:obracalc/view/cadundmedidas.dart';
@@ -25,15 +24,9 @@ import 'package:obracalc/view/menutracos.dart';
 import 'package:obracalc/view/menuundmedida.dart';
 import 'package:obracalc/view/menuusuarios.dart';
 import 'package:obracalc/view/orcamento.dart';
-import 'package:obracalc/view/alteraclientes.dart';
-import 'package:obracalc/view/pesquisarmateriais.dart';
-import 'package:obracalc/view/pesquisaservicos.dart';
-import 'package:obracalc/view/pesquisaundmedida.dart';
-import 'package:obracalc/view/telaInicial.dart';
 import 'package:obracalc/view/telalogin.dart';
 import 'package:obracalc/view/homescreen.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:obracalc/controller/usuarioControle.dart';
 
 void main() {
   runApp(ObraCalc());
@@ -82,7 +75,7 @@ class ObraCalc extends StatelessWidget {
         //primaryColor: Color(0xFFa1887f),
         //primaryColor: Color(0xFF388e3c),
         elevatedButtonTheme: ElevatedButtonThemeData(
-          style: TextButton.styleFrom(backgroundColor: Color(0xFF0A87A6)),
+          style: TextButton.styleFrom(backgroundColor: Color(0xFF0D99BE)),
           //style: TextButton.styleFrom(backgroundColor: Color(0xFF388e3c)),
         ),
       ),
@@ -117,7 +110,7 @@ Widget _introScreen() {
           end: Alignment.bottomLeft,
           colors: [Color(0xFF4bacb8), Color(0xFF4bacb8)],
         ),
-        navigateAfterSeconds: telaLogin(),
+        navigateAfterSeconds: telaBiometria(),
         loaderColor: Colors.transparent,
       ),
       Container(

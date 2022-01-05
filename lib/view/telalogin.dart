@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:obracalc/controller/usuarioControle.dart';
-import 'package:obracalc/database/app_database.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
-import 'package:sqflite/sqflite.dart';
+
+final UsuarioControle _control = UsuarioControle();
+
+
 
 class telaLogin extends StatefulWidget {
   @override
@@ -20,16 +22,30 @@ class _telaLoginState extends State<telaLogin> {
 
   final UsuarioControle _dao = UsuarioControle();
 
-  String var_json = '{"login":"aelcio.macedo", "senha": "1234"}';
+  final _formKey = GlobalKey<FormState>();
+  String users = 'Teste';
+
+  String var_json = '{"login":"marta.macedo", "senha": "1234"}';
+
+ // static var usuario;;
 
   @override
   Widget build(BuildContext context) {
-    void consultaUser() {
+
+    void recuperarUsuarios() async{
+      List usuariosRecuperados = await _dao.listarUsuarios();
+
+      String Vjson = usuariosRecuperados.toString();
+
+      print(Vjson);
+    }
+
+    void consultaUser() async {
       setState(() {
         Map json = jsonDecode(var_json);
         if (json["login"] == _controladorCampoLogin.text &&
             json["senha"] == _controladorCampoSenha.text) {
-          Navigator.pushNamed(context, '/menuPrincipal');
+          Navigator.pushNamed(context, '/homeScreen');
         } else {
           //print("Usuário não encontrado");
           Fluttertoast.showToast(
@@ -44,7 +60,18 @@ class _telaLoginState extends State<telaLogin> {
       });
     }
 
-    return Scaffold(
+    void teste(){
+      final String nome = '';
+      final String login = _controladorCampoLogin.text;
+      final String senha = _controladorCampoSenha.text;
+      final Usuario user = Usuario(0, nome, login, senha);
+      if(user.login == login && user.senha == senha){
+        print(user.senha);
+      }
+    }
+    return Form(
+      key: _formKey,
+      child: Scaffold(
       backgroundColor: Color(0xFFf5f5f5),
       //appBar: AppBar(title: Text("Login")),
       //bottomNavigationBar: BottomNavigationBar(currentIndex: 0, items: [],),
@@ -53,12 +80,19 @@ class _telaLoginState extends State<telaLogin> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Editor(_controladorCampoLogin, "Login", "", Icons.account_circle_outlined,
-                TextInputType.text),
+            Editor(
+               _controladorCampoLogin, "Login", "", Icons.account_circle_outlined,
+                TextInputType.text
+
+            ),
             //Editor(_controladorCampoSenha, "Senha", "", Icons.lock_open, TextInputType.text),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: TextField(
+              child: TextFormField(
+                validator: (value){
+                  if(value!.isEmpty) return "Campo Obrigatório";
+                  return null;
+                  },
                 controller: _controladorCampoSenha,
                 obscureText: true,
                 keyboardType: TextInputType.text,
@@ -92,15 +126,20 @@ class _telaLoginState extends State<telaLogin> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    consultaUser();
-                  },
+                    if(_formKey.currentState!.validate()){
+                      consultaUser();
+                      recuperarUsuarios();
+                      //teste();
+                      //print(user);
+                  }},
                   style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
                       primary: Color(0xFF0D99BE),
                       textStyle: TextStyle(
                         fontSize: 18,
-                      ))),
+                      )),
+                    ),
             ),
             Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -119,6 +158,7 @@ class _telaLoginState extends State<telaLogin> {
           ],
         ),
       ),
+    ),
     );
   }
 }
@@ -137,7 +177,14 @@ class Editor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: TextField(
+      child: TextFormField(
+        validator: (value){
+          if(value!.isEmpty){
+            return 'Campo Obrigatório';
+          }else{
+            return null;
+          }
+        },
         //textAlign: TextAlign.center,
         controller: _controlador,
         keyboardType: _tipoEntrada,

@@ -1,13 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:path/path.dart';
 
 class listaTracoArgamassa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Traços para Argamassa")),
+      appBar: AppBarCustomizada(titulo: "Traços para Argamassa"),
 
       body: criaTabela(),
     );

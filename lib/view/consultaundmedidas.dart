@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:obracalc/controller/undmedidaControle.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/undmedidaModelo.dart';
 
@@ -9,7 +10,7 @@ class consultaUndMedida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Consulta Unidade Medida')),
+      appBar: AppBarCustomizada(titulo: 'Consulta Unidade de Medida',),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<UnidadeMedida>>(

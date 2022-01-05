@@ -17,7 +17,6 @@ class cadServicos extends StatelessWidget {
         children: [
           Editor(_nomeServico, 'Nome do Serviço', 'Serviço', Icons.construction, TextInputType.text, TextCapitalization.words),
           Editor(_descricaoServico, 'Descrição', 'Descrição', Icons.construction, TextInputType.text, TextCapitalization.words),
-          TextField(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(

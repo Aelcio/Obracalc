@@ -48,5 +48,42 @@ class UsuarioControle {
     return usuarios;
   }
 
+  //================================================
+  Future<List<Usuario>> GetUser() async {
+    final Database db = await getDatabase();
+    final List<Map<String, dynamic>> result = await db.rawQuery('SELECT * FROM usuarios');
+    final List<Usuario> usuarios = [];
+    for (Map<String, dynamic> map in result) {
+      final Usuario usuario = Usuario(
+        map['idUsuario'],
+        map['nome'],
+        map['login'],
+        map['senha'],
+      );
+      usuarios.add(usuario);
+    }
+    return usuarios;
+
+    //===============================
+  }
+    ConsultaLogin(Usuario usuario) async {
+      final Database db =  await getDatabase();
+      db.rawQuery("SELECT * FROM usuarios WHERE"
+          + " login = '" + usuario.login +  "' AND senha ='"
+          + usuario.senha + "'");
+
+      return usuario;
+    }
+
+    //Teste Listagem
+  listarUsuarios() async{
+    Database db = await getDatabase();
+    String sql ="SELECT login, senha FROM usuarios";
+
+    List listaUsuarios = await db.rawQuery(sql);
+
+    return listaUsuarios;
+  }
+
  }
 

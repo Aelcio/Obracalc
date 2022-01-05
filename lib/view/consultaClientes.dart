@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:obracalc/controller/pessoaControle.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/pessoaModelo.dart';
 
@@ -10,7 +11,7 @@ class consultaClientes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Consulta Cliente')),
+      appBar: AppBarCustomizada(titulo: 'Consulta Clientes',),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<PessoaModelo>>(

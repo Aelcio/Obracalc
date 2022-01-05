@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:obracalc/controller/servicoControle.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/models/servicoModelo.dart';
 
 class consultaServicos extends StatelessWidget {
@@ -9,7 +10,7 @@ class consultaServicos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Consulta Servicos')),
+      appBar: AppBarCustomizada(titulo: 'Consulta Serviços',),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<Servico>>(

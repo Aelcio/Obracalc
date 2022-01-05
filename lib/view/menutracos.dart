@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/botaomenu.dart';
 
 
@@ -10,9 +11,7 @@ class menuTraco extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFe0e0e0),
-      appBar: AppBar(
-        title: Text("Traços"),
-      ),
+      appBar: AppBarCustomizada(titulo: 'Traços',),
       body: Container(
         width: double.maxFinite,
             child: Padding(

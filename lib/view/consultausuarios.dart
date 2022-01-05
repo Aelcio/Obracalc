@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:obracalc/controller/usuarioControle.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/usuariosModelo.dart';
 import 'package:obracalc/view/telalogin.dart';
@@ -12,13 +13,13 @@ class consultaUsuarios extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text('Consulta Usuarios')),
+      appBar: AppBarCustomizada(titulo: 'Consulta Usuários',),
       body: Container(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: FutureBuilder<List<Usuario>>(
             initialData: [],
-            future: _dao.findAllUsuario(),
+            future: _dao.GetUser(),
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
@@ -73,6 +74,23 @@ class _UsuarioItem extends StatelessWidget {
         subtitle: Text(
           'Login: ' + usuario.login,
           style: TextStyle(fontSize: 16.0),
+        ),
+        trailing: Container(
+          width: 100,
+          child: Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.edit),
+                color: Color(0xFF0A87A6),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.delete),
+                color: Color(0xFF0A87A6),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );

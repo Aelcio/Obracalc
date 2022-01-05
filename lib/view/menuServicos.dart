@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/botaomenu.dart';
 import 'package:obracalc/view/cadmateriais.dart';
 
@@ -7,19 +8,17 @@ class menuServicos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFe0e0e0),
-        appBar: AppBar(
-          title: Text("Serviços"),
-        ),
+        appBar: AppBarCustomizada(titulo: 'Serviços',),
         body: Container(
           width: double.maxFinite,
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
-                Expanded(
-                  child:
-                      btnGenericoMenu("Cadastrar", '/cadServicos', Icons.add),
-                ),
+                // Expanded(
+                //   child:
+                //       btnGenericoMenu("Cadastrar", '/cadServicos', Icons.add),
+                // ),
                 Expanded(
                   child: btnGenericoMenu(
                       "Pesquisar", '/consultaServicos', Icons.search),

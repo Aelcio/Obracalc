@@ -3,8 +3,10 @@ import 'package:dropdownfield/dropdownfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/botoes.dart';
 import 'package:obracalc/generic/campos.dart';
+import 'package:path/path.dart';
 
 class Orcamento extends StatefulWidget {
   @override
@@ -35,8 +37,8 @@ class _OrcamentoState extends State<Orcamento> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Orçamento'),
+      appBar: AppBarCustomizada(
+        titulo: 'Orçamento'
       ),
       body: ListView(
         children: [
@@ -185,7 +187,7 @@ class _OrcamentoState extends State<Orcamento> {
             ],
               ),
           Editor(_valotTotalOrcamento, 'Valor Total', 'Valor Total', Icons.attach_money, TextInputType.number, TextCapitalization.words),
-          Botoes('SALVAR')
+          Botoes('Salvar',)
         ],
 
       ),

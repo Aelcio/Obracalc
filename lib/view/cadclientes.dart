@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:obracalc/controller/pessoaControle.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/campos.dart';
 import 'package:obracalc/models/pessoaModelo.dart';
 import 'package:obracalc/models/pfModelo.dart';
@@ -34,6 +35,7 @@ class _cadClientesState extends State<cadClientes> {
   int? val;
   bool cpfativo = false;
   bool cnpjativo = false;
+  final _formKey = GlobalKey<FormState>();
 
   void _cpe() async {
     // Variáveis que receberão os dados do WebService
@@ -68,9 +70,11 @@ class _cadClientesState extends State<cadClientes> {
 
     //String opEscolhida = "Teste"
 
-    return Scaffold(
+    return Form(
+      key: _formKey,
+      child: Scaffold(
       backgroundColor: Color(0xFFf5f5f5),
-      appBar: AppBar(title: Text("Cadastro de Clientes")),
+        appBar: AppBarCustomizada(titulo: 'Cadastro de Clientes',),
       body: ListView(
         children: [
           Padding(
@@ -83,7 +87,14 @@ class _cadClientesState extends State<cadClientes> {
           //Início Campo Celular com Máscara
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
+            child: TextFormField(
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'Campo Obrigatório';
+                  }else{
+                    return null;
+                  }
+                },
                 controller: _celularController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [
@@ -112,7 +123,14 @@ class _cadClientesState extends State<cadClientes> {
           //Início Campo Telefone com Máscara
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
+            child: TextFormField(
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'Campo Obrigatório';
+                  }else{
+                    return null;
+                  }
+                },
                 controller: _telefoneController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [
@@ -257,6 +275,13 @@ class _cadClientesState extends State<cadClientes> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                  validator: (value){
+                    if(value!.isEmpty){
+                      return 'Campo Obrigatório';
+                    }else{
+                      return null;
+                    }
+                  },
                   controller: _cepController,
                   //inputFormatters: [
                   ///FilteringTextInputFormatter.digitsOnly,
@@ -319,56 +344,58 @@ class _cadClientesState extends State<cadClientes> {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               child: Text(
-                "Salvar",
+                "Salvar", style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                final String nome = _nomeController.text;
-                final String celular = _celularController.text;
-                final String telefone = _telefoneController.text;
-                final String cpf = _CPFController.text;
-                final String cnpj = _CNPJController.text;
-                final String logradouro = _logradouroController.text;
-                final String bairro = _bairroController.text;
-                final String cidade = _cidadeController.text;
-                final String estado = _estadoController.text;
-                final String cep = _cepController.text;
-                final PessoaModelo newPessoa = PessoaModelo(
-                    0,
-                    nome,
-                    celular,
-                    telefone,
-                    cpf,
-                    cnpj,
-                    logradouro,
-                    bairro,
-                    cidade,
-                    estado,
-                    cep);
-                _control
-                    .save(newPessoa)
-                    .then((idPessoa) => Navigator.pop(context));
+                if(_formKey.currentState!.validate()) {
+                  final String nome = _nomeController.text;
+                  final String celular = _celularController.text;
+                  final String telefone = _telefoneController.text;
+                  final String cpf = _CPFController.text;
+                  final String cnpj = _CNPJController.text;
+                  final String logradouro = _logradouroController.text;
+                  final String bairro = _bairroController.text;
+                  final String cidade = _cidadeController.text;
+                  final String estado = _estadoController.text;
+                  final String cep = _cepController.text;
+                  final PessoaModelo newPessoa = PessoaModelo(
+                      0,
+                      nome,
+                      celular,
+                      telefone,
+                      cpf,
+                      cnpj,
+                      logradouro,
+                      bairro,
+                      cidade,
+                      estado,
+                      cep);
+                  _control
+                      .save(newPessoa)
+                      .then((idPessoa) => Navigator.pop(context));
 
-                _nomeController.clear();
-                _celularController.clear();
-                _telefoneController.clear();
-                _CPFController.clear();
-                _CNPJController.clear();
-                _logradouroController.clear();
-                _bairroController.clear();
-                _cidadeController.clear();
-                _cidadeController.clear();
-                _estadoController.clear();
-                _cepController.clear();
+                  _nomeController.clear();
+                  _celularController.clear();
+                  _telefoneController.clear();
+                  _CPFController.clear();
+                  _CNPJController.clear();
+                  _logradouroController.clear();
+                  _bairroController.clear();
+                  _cidadeController.clear();
+                  _cidadeController.clear();
+                  _estadoController.clear();
+                  _cepController.clear();
 
-                Fluttertoast.showToast(
-                    msg: "Cliente cadastrado com sucesso!",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.black12,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-              },
+                  Fluttertoast.showToast(
+                      msg: "Cliente cadastrado com sucesso!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.black12,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                   }
+                },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 12.0),
                 textStyle: TextStyle(
@@ -379,6 +406,7 @@ class _cadClientesState extends State<cadClientes> {
           ),
         ],
       ),
+    ),
     );
   }
 

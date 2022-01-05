@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:obracalc/generic/app_bar_customizada.dart';
 import 'package:obracalc/generic/botaomenu.dart';
 import 'package:obracalc/view/cadmateriais.dart';
 
@@ -7,9 +8,7 @@ class menuUsuarios extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFe0e0e0),
-      appBar: AppBar(
-        title: Text("Usuários"),
-      ),
+      appBar: AppBarCustomizada(titulo: 'Usuários',),
       body: Container(
         width: double.maxFinite,
         child: Padding(
